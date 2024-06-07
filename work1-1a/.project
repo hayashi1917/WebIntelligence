@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>work1-1a</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>lib</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>lib/kuromoji-core-0.9.0.jar</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89/lib/kuromoji-core-0.9.0.jar</locationURI>
+		</link>
+		<link>
+			<name>lib/kuromoji-ipadic-0.9.0.jar</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89/lib/kuromoji-ipadic-0.9.0.jar</locationURI>
+		</link>
+	</linkedResources>
+</projectDescription>
