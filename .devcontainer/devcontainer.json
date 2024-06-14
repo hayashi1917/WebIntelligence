@@ -1,0 +1,17 @@
+{
+    "name": "Java Development with Amazon Corretto 17",
+    "build": {
+        "dockerfile": "../Dockerfile",
+        "context": "..",
+        "args": {}
+    },
+    "runArgs": [
+        "-v", "/mnt/c/Users/kusag/OneDrive/デスクトップ/webintelligene:/usr/src/app"
+    ],
+    "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash"
+    },
+    "extensions": [],
+    "postCreateCommand": "",
+    "remoteUser": "root"
+}
