@@ -14,7 +14,7 @@ public class Main {
 	// Work1-2a
 	static void example1() throws IOException {
 		Document doc = Jsoup.connect("https://en.wikipedia.org/").get();
-		System.out.println(doc.html());
+		//System.out.println(doc.html());
 		System.out.println(doc.title());
 		System.out.println(doc.body().text());
 	}

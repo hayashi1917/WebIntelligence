@@ -1,6 +1,11 @@
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.io.IOException;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import com.atilika.kuromoji.ipadic.Token;
 import com.atilika.kuromoji.ipadic.Tokenizer;
@@ -13,8 +18,12 @@ class BoW {
 	// Work1-2b
 	static BoW create(String text) {
 		// 1. textを形態素解析する
+		List<Token> tokens = tokenizer.tokenize(text);
 		// 2. 不用語を除去する
-		// 3. BoW を生成する
+		tokens.removeIf(n -> StopWords.isStopWord(n));
+	// 3. BoW を生成する
+		BoW token = new BoW(tokens);
+		return token;
 	}
 
 	// Work1-2b
@@ -22,7 +31,11 @@ class BoW {
 		try {
 			// 実装してみよう
 			// 1. urlからHTMLコンテンツの本文を取得する。
+			Document doc = Jsoup.connect(url).get();
+			String urlText = doc.text();
 			// 2. BoWクラスを初期化して bow 変数に格納する。
+			BoW bow = BoW.create(urlText);
+			return bow;
 		} catch (Exception e) {
 			System.err.println(e);
 			return null;
@@ -34,8 +47,8 @@ class BoW {
 		for (Token token: tokens) {
 			// 1. 語の表現形式を統一する
 			String term = BoW.repr(token);
-
 			// 2. termCount 中の語 term をカウントアップ
+			termCount.put(term, termCount.getOrDefault(term, 0) + 1);
 		}
 	}
 
