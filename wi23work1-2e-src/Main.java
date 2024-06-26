@@ -25,6 +25,7 @@ class FeatureTest {
 		}
 
 		// 課題のプログラムを書く
+
 	}
 	
 	// Work1-2e
@@ -37,4 +38,6 @@ class FeatureTest {
 		}
 		return new Feature(values);
 	}
+
+
 }
