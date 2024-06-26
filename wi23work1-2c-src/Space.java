@@ -57,21 +57,27 @@ class Space {
 	
 	// Work1-2c
 	double tfidf(int[][] M, int i, int j) {
-
+		return this.tf(M, i, j) * this.idf(M, j);
 	}
 
 	// Work1-2c
 	double tf(int[][] M, int i, int j) {
-
+		return M[i][j];
 	}
 	
 	// Work1-2c
 	double df(int[][] M, int j) {
-
+		int count = 0;
+		for (int i = 0; i < M.length; i++) {
+			if (M[i][j] > 0) {
+				count++;
+			}
+		}
+		return count;
 	}
 
 	// Work1-2c
 	double idf(int[][] M, int j) {
-
+		return Math.log((double)M.length / this.df(M, j));
 	}
 }
