@@ -59,6 +59,7 @@ class BoW {
 	static String repr(Token token) {
 		return token.getBaseForm();
 	}
+
 }
 
 // Work1-2b

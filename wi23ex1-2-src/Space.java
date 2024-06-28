@@ -10,7 +10,7 @@ class Space {
 		add("みかん");
 		add("いちご");
 	}};
-	
+
 	// Work1-2c
 	int[][] M; // 単語文章行列 M[i][j] = 文書 d_i 中における語 t_j の頻度
 	double[][] W; // 重み行列 W[i][j] = 文書 d_i 中における語 t_j の重み
@@ -20,16 +20,16 @@ class Space {
 	Space(ArrayList<BoW> bows) {
 		// 1. 索引語の決定
 		this.indexTerms = this.makeIndexTerms(bows);
-		
-		// 2. 単語文書行列を初期化 
+
+		// 2. 単語文書行列を初期化
 		this.M = this.makeTermDocumentMatrix(bows);
 		System.out.println(Arrays.deepToString(this.M));
-		
+
 		// 3. 語の重みを計算する
 		this.W = this.makeWeightMatrix(this.M);
 		System.out.println(Arrays.deepToString(this.W));
 	}
-	
+
 	// Work1-2c, Work1-2d
 	ArrayList<String> makeIndexTerms(ArrayList<BoW> bows) {
 		return this.indexTerms;
@@ -39,7 +39,7 @@ class Space {
 	int indexOf(String term) {
 		return this.indexTerms.indexOf(term);
 	}
-	
+
 	// Work1-2c
 	// 単語文章行列の生成
 	int[][] makeTermDocumentMatrix(ArrayList<BoW> bows) {
@@ -55,30 +55,36 @@ class Space {
 
 		return B;
 	}
-	
+
 	// Work1-2c
 	double tfidf(int[][] M, int i, int j) {
-
+		return this.tf(M, i, j) * this.idf(M, j);
 	}
 
 	// Work1-2c
 	double tf(int[][] M, int i, int j) {
 
 	}
-	
+
 	// Work1-2c
 	double df(int[][] M, int j) {
-
+		
 	}
 
 	// Work1-2c
 	double idf(int[][] M, int j) {
 
 	}
-	
+
 	// 課題1-2
 	// text を特徴ベクトルに変換する。ベクトル空間を更新しない。
 	Feature translate(String text) {
+		// 1. BoWを生成
+		BoW bow = new BoW(text);
 
+		// 2. 特徴ベクトルを生成
+		Feature feature = new Feature(bow, this);
+
+		return feature;
 	}
 }

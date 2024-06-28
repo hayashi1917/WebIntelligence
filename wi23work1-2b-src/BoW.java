@@ -41,7 +41,7 @@ class BoW {
 			return null;
 		}
 	}
-		
+
 	// Work1-2b
 	BoW(List<Token> tokens) {
 		for (Token token: tokens) {

@@ -19,16 +19,16 @@ class Ex2Test {
 			add(BoW.create(html2()));
 			add(BoW.create(html3()));
 		}};
-		
+
 		Space space = new Space(bows);
-		
+
 		Feature v1 = space.features.get(0);
 		Feature v2 = space.features.get(1);
 		Feature v3 = space.features.get(2);
 		System.out.println(Feature.similarity(v1, v2));
 		System.out.println(Feature.similarity(v2, v3));
 		System.out.println(Feature.similarity(v3, v1));
-		
+
 		Feature q = space.translate("チャットGPTは質問や命令を入力すると、自然な文章で回答したり提案書を作成したりする。");
 		System.out.println(q);
 		System.out.println(Feature.similarity(v1, q));
@@ -38,7 +38,7 @@ class Ex2Test {
 		// 課題の機能を実装すること。
 	}
 	// -->
-	
+
 	// 課題1-2
 	static String html1() throws IOException {
 		Document document = Jsoup.connect("https://news.yahoo.co.jp/articles/c58fd4a9dfd9c97e1cc307cc13f372ef7f7aac09").get();
