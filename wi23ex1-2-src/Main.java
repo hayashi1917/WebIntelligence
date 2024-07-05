@@ -14,6 +14,7 @@ class Ex2Test {
 	// 課題1-2
 	// <!--
 	static void test1() throws IOException {
+
 		ArrayList<BoW> bows = new ArrayList<>() {{
 			add(BoW.create(html1()));
 			add(BoW.create(html2()));
@@ -21,7 +22,11 @@ class Ex2Test {
 		}};
 
 		Space space = new Space(bows);
-
+		for(int j = 0; j < space.M[0].length; j++){
+			for (int i = 0; i < space.M[j].length; i++) {
+				System.out.println("M[" + i + "]=" + space.M[j][i]);
+			}
+		}
 		Feature v1 = space.features.get(0);
 		Feature v2 = space.features.get(1);
 		Feature v3 = space.features.get(2);
@@ -36,24 +41,35 @@ class Ex2Test {
 		System.out.println(Feature.similarity(v3, q));
 
 		// 課題の機能を実装すること。
+		double[] sim = new double[3];
+		for (int i = 0; i < 3; i++) {
+			sim[i] = Feature.similarity(space.features.get(i), q);
+		}
+		int maxIndex = 0;
+		for (int i = 1; i < 3; i++) {
+			if (sim[maxIndex] < sim[i]) {
+				maxIndex = i;
+			}
+		}
+		System.out.println("最も類似度が高い記事は" + (maxIndex + 1) + "番目の記事です。");
 	}
 	// -->
 
 	// 課題1-2
 	static String html1() throws IOException {
-		Document document = Jsoup.connect("https://news.yahoo.co.jp/articles/c58fd4a9dfd9c97e1cc307cc13f372ef7f7aac09").get();
+		Document document = Jsoup.connect("https://news.yahoo.co.jp/articles/fb3f7fc8048aad4ebbf0794f28fd023eb30f634e").get();
 		return document.body().text();
 	}
 
 	// 課題1-2
 	static String html2() throws IOException {
-		Document document = Jsoup.connect("https://news.yahoo.co.jp/articles/cfe9bb2e6037386dd675445341b1d24e1e7db0d6").get();
+		Document document = Jsoup.connect("https://news.yahoo.co.jp/articles/ef54c4732947fac4c059fffa05567314867407dc").get();
 		return document.body().text();
 	}
 
 	// 課題1-2
 	static String html3() throws IOException {
-		Document document = Jsoup.connect("https://news.yahoo.co.jp/articles/cf9d0d6797204d7cf699fd2f10b8788db9b95785").get();
+		Document document = Jsoup.connect("https://news.yahoo.co.jp/articles/085be9f6da696f346fe77a9dd3a5eeac3c7b458e").get();
 		return document.body().text();
 	}
 }

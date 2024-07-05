@@ -30,5 +30,14 @@ class Feature {
 	}
 
 	// Work1-2e
-	double similarity(Feature other) {return Feature.similarity(this, other);}
+	double similarity(Feature other) {
+		return Feature.similarity(this, other);
+	}
+
+	// Work1-2ev 特徴ベクトルの集合Vについて､　v2...vnをv1との類似度の降順に並べ替える
+	static Feature[] sort(Feature v1, Feature[] V) {
+		Feature[] sorted = Arrays.copyOf(V, V.length);
+		Arrays.sort(sorted, (v2, v3) -> Double.compare(v3.similarity(v1), v2.similarity(v1)));
+		return sorted;
+	}
 }
