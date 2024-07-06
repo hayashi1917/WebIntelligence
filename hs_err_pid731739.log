@@ -1,0 +1,134 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Cannot create GC thread. Out of system resources.
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (gcTaskThread.cpp:48), pid=731739, tid=0x00007f9dec118640
+#
+# JRE version:  (8.0_382-b05) (build )
+# Java VM: OpenJDK 64-Bit Server VM (25.382-b05 mixed mode linux-amd64 compressed oops)
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007f9de4009800):  JavaThread "Unknown thread" [_thread_in_vm, id=731741, stack(0x00007f9dec019000,0x00007f9dec119000)]
+
+Stack: [0x00007f9dec019000,0x00007f9dec119000],  sp=0x00007f9dec117700,  free space=1017k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0xb3e0a7]
+V  [libjvm.so+0x4f04cf]
+V  [libjvm.so+0x5cb31f]
+V  [libjvm.so+0x5ca9ff]
+V  [libjvm.so+0x9a8152]
+V  [libjvm.so+0xb01101]
+V  [libjvm.so+0xb013b6]
+V  [libjvm.so+0x64417f]
+V  [libjvm.so+0xae06d0]
+V  [libjvm.so+0x71b120]  JNI_CreateJavaVM+0x60
+C  [libjli.so+0x441a]
+C  [libjli.so+0x8971]
+C  [libc.so.6+0x94b43]
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+=>0x00007f9de4009800 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=731741, stack(0x00007f9dec019000,0x00007f9dec119000)]
+
+VM state:not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+heap address: 0x00000000ff000000, size: 16 MB, Compressed Oops mode: Non-zero based:0x00000000fefff000
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 0
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (0 events):
+No events
+
+
+Dynamic libraries:
+ff000000-100000000 rw-p 00000000 00:00 0 
+557ddb4d1000-557ddb4d2000 r--p 00000000 08:03 9161313                    /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
+557ddb4d2000-557ddb4d3000 r-xp 00001000 08:03 9161313                    /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
+557ddb4d3000-557ddb4d4000 r--p 00002000 08:03 9161313                    /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
+557ddb4d4000-557ddb4d5000 r--p 00002000 08:03 9161313                    /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
+557ddb4d5000-557ddb4d6000 rw-p 00003000 08:03 9161313                    /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
+557ddd05c000-557ddd07d000 rw-p 00000000 00:00 0                          [heap]
+7f9dd2cdd000-7f9dd2cde000 ---p 00000000 00:00 0 
+7f9dd2cde000-7f9dd2dde000 rw-p 00000000 00:00 0 
+7f9dd2dde000-7f9dd2ddf000 ---p 00000000 00:00 0 
+7f9dd2ddf000-7f9dd2edf000 rw-p 00000000 00:00 0 
+7f9dd2edf000-7f9dd2ee0000 ---p 00000000 00:00 0 
+7f9dd2ee0000-7f9dd2fe0000 rw-p 00000000 00:00 0 
+7f9dd2fe0000-7f9dd2fe1000 ---p 00000000 00:00 0 
+7f9dd2fe1000-7f9dd30e1000 rw-p 00000000 00:00 0 
+7f9dd30e1000-7f9dd30e2000 ---p 00000000 00:00 0 
+7f9dd30e2000-7f9dd31e2000 rw-p 00000000 00:00 0 
+7f9dd31e2000-7f9dd31e3000 ---p 00000000 00:00 0 
+7f9dd31e3000-7f9dd32e3000 rw-p 00000000 00:00 0 
+7f9dd32e3000-7f9dd32e4000 ---p 00000000 00:00 0 
+7f9dd32e4000-7f9dd33e4000 rw-p 00000000 00:00 0 
+7f9dd33e4000-7f9dd33e5000 ---p 00000000 00:00 0 
+7f9dd33e5000-7f9dd34e5000 rw-p 00000000 00:00 0 
+7f9dd34e5000-7f9dd34e6000 ---p 00000000 00:00 0 
+7f9dd34e6000-7f9dd35e6000 rw-p 00000000 00:00 0 
+7f9dd35e6000-7f9dd35e7000 ---p 00000000 00:00 0 
+7f9dd35e7000-7f9dd36e7000 rw-p 00000000 00:00 0 
+7f9dd36e7000-7f9dd36e8000 ---p 00000000 00:00 0 
+7f9dd36e8000-7f9dd37e8000 rw-p 00000000 00:00 0 
+7f9dd37e8000-7f9dd37e9000 ---p 00000000 00:00 0 
+7f9dd37e9000-7f9dd38e9000 rw-p 00000000 00:00 0 
+7f9dd38e9000-7f9dd38ea000 ---p 00000000 00:00 0 
+7f9dd38ea000-7f9dd39ea000 rw-p 00000000 00:00 0 
+7f9dd39ea000-7f9dd39eb000 ---p 00000000 00:00 0 
+7f9dd39eb000-7f9dd3aeb000 rw-p 00000000 00:00 0 
+7f9dd3aeb000-7f9dd3aec000 ---p 00000000 00:00 0 
+7f9dd3aec000-7f9dd3bec000 rw-p 00000000 00:00 0 
+7f9dd3bec000-7f9dd3bed000 ---p 00000000 00:00 0 
+7f9dd3bed000-7f9dd3ced000 rw-p 00000000 00:00 0 
+7f9dd3ced000-7f9dd3cee000 ---p 00000000 00:00 0 
+7f9dd3cee000-7f9dd3dee000 rw-p 00000000 00:00 0 
+7f9dd3dee000-7f9dd3def000 ---p 00000000 00:00 0 
+7f9dd3def000-7f9dd3eef000 rw-p 00000000 00:00 0 
+7f9dd3eef000-7f9dd3ef0000 ---p 00000000 00:00 0 
+7f9dd3ef0000-7f9dd3ff0000 rw-p 00000000 00:00 0 
+7f9dd3ff0000-7f9dd3ff1000 ---p 00000000 00:00 0 
+7f9dd3ff1000-7f9dd40f1000 rw-p 00000000 00:00 0 
+7f9dd40f1000-7f9dd40f2000 ---p 00000000 00:00 0 
+7f9dd40f2000-7f9dd41f2000 rw-p 00000000 00:00 0 
+7f9dd41f2000-7f9dd41f3000 ---p 00000000 00:00 0 
+7f9dd41f3000-7f9dd42f3000 rw-p 00000000 00:00 0 
+7f9dd42f3000-7f9dd42f4000 ---p 00000000 00:00 0 
+7f9dd42f4000-7f9dd43f4000 rw-p 00000000 00:00 0 
+7f9dd43f4000-7f9dd43f5000 ---p 00000000 00:00 0 
+7f9dd43f5000-7f9dd44f5000 rw-p 00000000 00:00 0 
+7f9dd44f5000-7f9dd44f6000 ---p 00000000 00:00 0 
+7f9dd44f6000-7f9dd45f6000 rw-p 00000000 00:00 0 
+7f9dd45f6000-7f9dd45f7000 --
