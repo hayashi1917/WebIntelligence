@@ -3,49 +3,34 @@ import java.util.Arrays;
 
 // Work1-2c
 class Space {
-	// 索引語の初期値
-	ArrayList<String> indexTerms = new ArrayList<>() {{
-		add("りんご");
-		add("みかん");
-		add("いちご");
-	}};
+	 // 索引語の初期値
+	 ArrayList<String> indexTerms = new ArrayList<>();
+	 
+	 // Work1-2c
+	 int[][] M; // 単語文章行列 M[i][j] = 文書 d_i 中における語 t_j の頻度
+	 double[][] W; // 重み行列 W[i][j] = 文書 d_i 中における語 t_j の重み
+	 
+	 ArrayList<Feature> features = new ArrayList<>();
+	 
+	 ArrayList<BoW> bows = new ArrayList<>(); 
 
-	ArrayList<Feature> features = new ArrayList<>();
 	// Work1-2c
-	int[][] M; // 単語文章行列 M[i][j] = 文書 d_i 中における語 t_j の頻度
-	double[][] W; // 重み行列 W[i][j] = 文書 d_i 中における語 t_j の重み
-
-	// Work1-2c
-	// BoWのリストからベクトル空間を構成する。
-	Space(ArrayList<BoW> bows) {
-		// 1. 索引語の決定
-		this.indexTerms = this.makeIndexTerms(bows);
-
-		// 2. 単語文書行列を初期化
-		this.M = this.makeTermDocumentMatrix(bows);
-		System.out.println(Arrays.deepToString(this.M));
-
-		// 3. 語の重みを計算する
-		this.W = this.makeWeightMatrix(this.M);
-		System.out.println(Arrays.deepToString(this.W));
-
-		// 4. 特徴ベクトルを生成
-		for (BoW bow : bows) {  // bows の各要素に対してループ
-			int[] termCounts = new int[indexTerms.size()];
-			for (int j = 0; j < indexTerms.size(); j++) {
-				String term = indexTerms.get(j);
-				termCounts[j] = bow.termCount.getOrDefault(term, 0);
-			}
-
-			double[] weightedTerms = new double[indexTerms.size()];
-			for (int j = 0; j < indexTerms.size(); j++) {
-				weightedTerms[j] = tfidf(M, 0, j) * termCounts[j]; // Mの行は常に0
-			}
-
-			Feature feature = new Feature(weightedTerms);
-			this.features.add(feature);
-		}
-	}
+	 Space(ArrayList<BoW> bows) {
+		 
+		 this.bows = bows; 
+		 
+	     // 1. 索引語の決定
+	     this.indexTerms = this.makeIndexTerms(bows);
+	     
+	     // 2. 単語文書行列を初期化 
+	     this.M = this.makeTermDocumentMatrix(bows);
+	     
+	     // 3. 語の重みを計算
+	     this.W = this.makeWeightMatrix(this.M);
+	     int i = 0;
+	     
+	     this.features = this.createFeatures(this.W);
+	 }
 
 	// Work1-2c, Work1-2d
 	ArrayList<String> makeIndexTerms(ArrayList<BoW> bows) {
@@ -107,19 +92,27 @@ class Space {
 	double idf(int[][] M, int j) {
 		return Math.log((double)M.length / this.df(M, j));
 	}
+	
 	// 課題1-2
 	// text を特徴ベクトルに変換する。ベクトル空間を更新しない。
 	Feature translate(String text) {
-		// 1. BoWを生成
-		BoW bow = BoW.create(text);
-		// 2. 特徴ベクトルを生成
-		ArrayList<BoW> bowList = new ArrayList<>();
-		bowList.add(bow);
-		Space space = new Space(bowList);
-
-		Feature feature = new Feature(space.W[0]);
-
-		return feature;
+		  BoW bow = BoW.create(text);
+		  double[] vector = new double[this.indexTerms.size()];
+		  for (String term : bow.termCount.keySet()) {
+		      int index = this.indexTerms.indexOf(term);
+		      if (index != -1) {
+		          vector[index] = bow.termCount.get(term) * idf(this.M, index);
+		      }
+		  }
+		  return new Feature(vector); // 特徴ベクトル
 		}
 
+	ArrayList<Feature> createFeatures(double[][] W) {
+	    ArrayList<Feature> features = new ArrayList<>();
+	    for (int i = 0; i < W.length; i++) {
+	        features.add(new Feature(W[i]));
+	    }
+	    return features;
 	}
+	
+}
