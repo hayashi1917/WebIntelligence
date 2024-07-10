@@ -23,11 +23,13 @@ class Ex2Test {
 		}};
 
 		Space space = new Space(bows);
+		/*
 		for(int j = 0; j < space.M[0].length; j++){
 			for (int i = 0; i < space.M[j].length; i++) {
 				System.out.println("M[" + i + "]=" + space.M[j][i]);
 			}
 		}
+		*/
 		Feature v1 = space.features.get(0);
 		Feature v2 = space.features.get(1);
 		Feature v3 = space.features.get(2);

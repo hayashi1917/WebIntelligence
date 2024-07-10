@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 
 // Work1-2c
 class Space {
@@ -27,14 +28,17 @@ class Space {
 	     
 	     // 3. 語の重みを計算
 	     this.W = this.makeWeightMatrix(this.M);
-	     int i = 0;
 	     
 	     this.features = this.createFeatures(this.W);
 	 }
 
 	// Work1-2c, Work1-2d
 	ArrayList<String> makeIndexTerms(ArrayList<BoW> bows) {
-		return this.indexTerms;
+		HashSet<String> terms = new HashSet<String>();
+		for(BoW bow : bows) {
+			terms.addAll(bow.termCount.keySet());
+		}
+		return new ArrayList<>(terms);
 	}
 
 	// Work1-2c
