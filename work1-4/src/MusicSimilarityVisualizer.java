@@ -5,27 +5,28 @@ import org.graphstream.graph.implementations.*;
 public class MusicSimilarityVisualizer {
     public static void main(String[] args) {
         // 1. データ収集
-        List<String> urls = Arrays.asList(
-            "https://ameblo.jp/kar1206/entry-12853391730.html",
-            "https://utaten.com/lyric/hw21051901/",
-            "https://www.uta-net.com/song/356731/"
-        ); 
+        Map<String, String> songUrlMap = new LinkedHashMap<>();
+        songUrlMap.put("King Gnu BOY", "https://www.uta-net.com/song/309087/");
+        songUrlMap.put("King Gnu ユーモア", "https://www.uta-net.com/song/279876/");
+        songUrlMap.put("King Gnu PrayerX", "https://www.uta-net.com/song/255819/");
+        songUrlMap.put("King Gnu Flash!!!", "https://www.uta-net.com/song/262414/");
+        songUrlMap.put("King Gnu Vinyl", "https://www.uta-net.com/song/238326/");
+        songUrlMap.put("King Gnu 飛行艇", "https://www.uta-net.com/song/272239/");
+        songUrlMap.put("King Gnu 白日", "https://www.uta-net.com/song/263550/");
+        songUrlMap.put("King Gnu 逆夢", "https://www.uta-net.com/song/312609/");
+        songUrlMap.put("King Gnu 一途", "https://www.uta-net.com/song/312149/");
         
-        // ユーザーが入力する曲名リスト
-        List<String> songTitles = Arrays.asList(
-            "supernova",
-            "NEXT LEBEL",
-            "Hot Mess"
-        );
+        /*
+        songUrlMap.put("aespa SunandMoon", "https://www.uta-net.com/song/356730/");
+        songUrlMap.put("aespa HotMess", "https://www.uta-net.com/song/356730/");
+        songUrlMap.put("IVE LOVEDIVE", "https://www.uta-net.com/song/330919/");
+        songUrlMap.put("IVE AfterLIKE", "https://www.uta-net.com/song/337982/");
+        songUrlMap.put("IVE ELEVEN", "https://www.uta-net.com/song/325185/");
+        */
         
-        // URLと曲名の数が一致することを確認
-        if (urls.size() != songTitles.size()) {
-            System.out.println("エラー: URLと曲名の数が一致しません。");
-            return;
-        }
 
         ArrayList<BoW> bows = new ArrayList<>();
-        for (String url : urls) {
+        for (String url : songUrlMap.values()) {
             BoW bow = BoW.fetch(url);
             if (bow != null) {
                 bows.add(bow);
@@ -40,18 +41,19 @@ public class MusicSimilarityVisualizer {
         System.setProperty("org.graphstream.ui", "swing");
         Graph graph = new SingleGraph("Music Similarity Network");
 
-        // 4. ノードとエッジの追加
+     // 4. ノードとエッジの追加
+        List<String> songTitles = new ArrayList<>(songUrlMap.keySet());
         for (int i = 0; i < features.size(); i++) {
             Node node = graph.addNode("Song" + i);
             node.setAttribute("ui.label", songTitles.get(i));
-            node.setAttribute("ui.style", "text-size: 20px; size: 30px; fill-color: rgb(100,100,255);");
-            
+        }
+
+        for (int i = 0; i < features.size(); i++) {
             for (int j = i + 1; j < features.size(); j++) {
                 double similarity = Feature.similarity(features.get(i), features.get(j));
-                if (similarity > 0.3) { // 類似度のしきい値
+                if (similarity > 0.05) { // 類似度のしきい値
                     Edge edge = graph.addEdge("Song" + i + "-Song" + j, "Song" + i, "Song" + j);
                     edge.setAttribute("ui.label", String.format("%.2f", similarity));
-                    edge.setAttribute("ui.style", "text-size: 15px;");
                 }
             }
         }
